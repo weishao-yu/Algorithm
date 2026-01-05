@@ -10,7 +10,9 @@ def dijkstra_algo(N, matrix, start, end):
                 min_value = Dist[k]
                 min_k = k
         S[min_k] = 1
-    
+# 【關鍵修改】如果找不到下一個可到達的點 (min_value 還是 inf)，就跳出
+        if min_k == -1 or min_value == float('inf'):
+            break    
         for k in range(N):
             d = Dist[min_k] + matrix[min_k][k]
             if d < Dist[k]:

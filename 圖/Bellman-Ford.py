@@ -18,7 +18,13 @@ def bellman_ford_algo(num, matrix, start, end):
                     d = Dk[k-1][u] + matrix[u][v]              # 若 i→…→u→v 的成本更好
                     if d < Dk[k][v]:
                         Dk[k][v] = d
-    return Dk[-1]   # 回傳表格中最後一列：最多走 n-1 個邊下的最低成本
+    # 【關鍵修改】取出最終結果
+    final_dist = Dk[num-1][end] # 這裡索引是 num-1 (即 Python 的 -1)
+    # 如果是無限大，題目要求輸出 -1
+    if final_dist == float('inf'):
+        return -1
+    else:
+        return int(final_dist) # 題目通常要求整數  
 while True:
     try:
         num = int(input())

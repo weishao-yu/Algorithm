@@ -1,4 +1,4 @@
-def bellman_ford_negative_cycle(num, matrix, start): # 參數拿掉 end
+def bellman_ford_negative_cycle(num, matrix, start): 
 
     # 【特例處理】如果只有 1 個點，直接看自己連自己的邊
     if num == 1:

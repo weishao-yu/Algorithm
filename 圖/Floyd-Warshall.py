@@ -1,4 +1,4 @@
-def floyd_warshall_algo(num, matrix):
+def floyd_warshall_algo(num, matrix, start, end):
     A = [[0 for b in range(num)] for a in range(num)]
     # 當 k = 0 (初始化)
     for i in range(num):
@@ -12,7 +12,7 @@ def floyd_warshall_algo(num, matrix):
                 d = A[i][k] + A[k][j]
                 if(d < A[i][j]): # 試試看如果必經k節點會不會更好
                     A[i][j] = d
-    return A
+    return A[start][end]
 while True:
     try:
         num = int(input())
@@ -26,14 +26,16 @@ while True:
                 else:
                     row.append(int(j))
             matrix.append(row)
-        result = floyd_warshall_algo(num, matrix)
-        for row in result:
-            output_row = []
-            for val in row:
-                if val == float('inf'):
-                    output_row.append('x')
-                else:
-                    output_row.append(str(val))
-            print(" ".join(output_row))
+        start, end = map(int,input().split())
+        result = floyd_warshall_algo(num, matrix, start, end)
+        print(result)
+        # for row in result:
+        #     output_row = []
+        #     for val in row:
+        #         if val == float('inf'):
+        #             output_row.append('x')
+        #         else:
+        #             output_row.append(str(val))
+        #     print(" ".join(output_row))
     except EOFError:
         break
